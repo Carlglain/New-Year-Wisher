@@ -9,7 +9,6 @@ function Wishes() {
       so in this effect i'll learn how to use an AI in my website and train it to be specific. */}
       <h1>Happy new year {year} {wish.Name}  
        <br /> for your wish  ' {wish.Wish} '  to be granted You must...</h1>
-      <h2></h2>
     </div>
   )
 }
