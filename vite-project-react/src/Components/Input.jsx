@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import  './Input.css'
 import { WishContext } from './WishContext'
+import WishSelector from './WishSelector';
+
 function Input({isPersonalWish}) {
   
     const [data,setData] = useState({Name:"",Wish:""})
@@ -17,7 +19,7 @@ function Input({isPersonalWish}) {
       setEmail(value)
     }
     const navigate = useNavigate()
-  const handleSubmit=(e)=>{
+  const handleSubmit =(e)=>{
     e.preventDefault();
     if(!data.Name || !data.Wish ){
     
@@ -41,15 +43,24 @@ function Input({isPersonalWish}) {
         <label htmlFor="l1">Name:</label>
         <input id='l1' placeholder= {isPersonalWish?'Enter your name':'Enter Recipient Name'} onChange={handleChange} name='Name'  value={data.Name} type="text" />
         <br />
+        { !isPersonalWish &&
+          <>
         <label htmlFor="l2">Email</label>
         <input onChange={handleEmailChange} type="email"
-         placeholder='recipient@gmail.com' name='Email' value={email} />
+         placeholder='recipient@gmail.com' name='Email' value={email} /> <br />
+       </>
+        }
         <label htmlFor="l3">Wish: </label>
         <input id='l3' onChange={handleChange} name='Wish' value={data.Wish} type="text" />
         {/* prewritten wishes the user can select from */}
+        
+        
         {error && <div className='error'>Name or wish cannot be empty! Ensure to feel them and try again</div>}
         <br />
+        <h1>OR Select Wish Below</h1>
+        <WishSelector />
         <button> {Message} </button>
+        
       </form>
     </div>
   )
